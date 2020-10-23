@@ -26,9 +26,10 @@
 
 ## Process II. (NLP Data Gathering)
 
-### Goal: Find price prediction of author
+### Goals
 
-1. Is the author predicting a price?
+- Find price prediction of author
+- What is the author saying
 
 ## Process III. (AI Algorithm Predictions)
 
