@@ -77,6 +77,7 @@ Disclosure
 The leader in blockchain news, CoinDesk is a media outlet that strives for the highest journalistic standards and abides by a strict set of editorial policies. CoinDesk is an independent operating subsidiary of Digital Currency Group, which invests in cryptocurrencies and blockchain startups."""
 
 sentence = """Looking at the Moving Average Convergence Divergence (MACD), it is clear that buyers will stay in control despite the stalling at $13,800. Once the hurdle at $14,000 is broken sometime next week, the flagship cryptocurrency is likely to rush towards $15,000 by the end of November."""
+temporary = """Bitcoin will hit $15000 by January."""
 
 def interpret_content(content):
     tokens = sent_tokenize(content)
@@ -85,7 +86,7 @@ def interpret_content(content):
         token = word_tokenize(i)
         pos_tagged = pos_tag(token)
 
-        pattern = """Chunk: {<RB.?>}"""
+        pattern = """Chunk: {<NNP>.*<MD>.*<VB>.*<CD>}"""
         chunker = RegexpParser(pattern)
 
         output = chunker.parse(pos_tagged)
@@ -93,5 +94,21 @@ def interpret_content(content):
 
     return 0
 
+def interpretPricePrediction(content):
+  btc_inter = ["bitcoin", "bitcoins", "btc", "xbt"]
+  btc_inter += [i.capitalize() for i in btc_inter] + [i.upper() for i in btc_inter]
+  
+  tokens = sent_tokenize(content)
+  
+  for i in tokens:
+    token = word_tokenize(i)
+    pos_tagged = pos_tag(token)
+    
+    pattern = """Chunk: {}"""
+    chunker = RegexpParser(pattern)
+    
+    output = chunker.parse(pos_tagged)
+    output.draw()
+
 if __name__ == "__main__":
-    output = interpret_content(content)
+    output = interpretPricePrediction(temporary)
