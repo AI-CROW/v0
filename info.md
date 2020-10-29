@@ -5,7 +5,7 @@
 - Name: Crow
 - Author: Ian Koide
 - Start Date: 10/6/20
-- Language: Java
+- Languages: Java, Python, HTML, CSS, SCSS, JS
 - Java Version: 1.8 (8)
 - Framework: Spring Boot
 - Purpose: Give an estimate of a projected cryptocurrency (Bitcoin) price based on data gathered from multiple cryptocurrency news sources using machine learning and other various computer algorithms.
@@ -16,6 +16,7 @@
 - Organize all data with a modern UI
 - Add API to allow people to query our website for cryptocurrency prices, our predictions and articles
 - Add feature/ api for cryptocurrency news sites to get their articles added to the algorithm pool
+- Make it open source in such a manor that contributors can add the necessary files to scrape a site and give the correct data, site data and predictions will not be immediately incorporated into the ML algorithm pool but if predictions serve somewhat accurate then it will be added to the pool.
 
 ## Process I. (Web Scraping for Articles)
 
