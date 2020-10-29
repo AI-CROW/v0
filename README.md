@@ -10,4 +10,4 @@ An application that predicts the future price of cryptocurrencies by scraping an
 
 | name | articles | accuracy | date added |
 |------|----------|----------|------------|
-| [Coindesk](https://coindesk.com)
+| [Coindesk](https://coindesk.com) | 0 | 1 | 10/29/20
