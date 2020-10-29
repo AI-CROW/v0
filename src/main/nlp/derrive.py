@@ -76,6 +76,8 @@ EthereumCommoditiesBitcoinEquitiesMarket Wrap
 Disclosure
 The leader in blockchain news, CoinDesk is a media outlet that strives for the highest journalistic standards and abides by a strict set of editorial policies. CoinDesk is an independent operating subsidiary of Digital Currency Group, which invests in cryptocurrencies and blockchain startups."""
 
+sentence = """Looking at the Moving Average Convergence Divergence (MACD), it is clear that buyers will stay in control despite the stalling at $13,800. Once the hurdle at $14,000 is broken sometime next week, the flagship cryptocurrency is likely to rush towards $15,000 by the end of November."""
+
 def interpret_content(content):
     tokens = sent_tokenize(content)
 

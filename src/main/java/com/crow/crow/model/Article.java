@@ -1,5 +1,8 @@
 package com.crow.crow.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Article {
     private String title;
     private String author;
