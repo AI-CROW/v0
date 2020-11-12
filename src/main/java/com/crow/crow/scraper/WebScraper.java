@@ -1,11 +1,14 @@
 package com.crow.crow.scraper;
 
 import com.crow.crow.article.Article;
-import com.crow.crow.article.ArticleService;
+import com.crow.crow.article.ArticleDao;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,18 +16,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class WebScraper {
 
     private static final List<String> baseUrls = Arrays.asList("https://www.coindesk.com/category/markets");
     private static ArrayList<Article> articles;
 
-    private final ArticleService articleService;
+    private final ArticleDao articleDao;
 
-    public WebScraper(ArticleService articleService) {
-        this.articleService = articleService;
+    @Autowired
+    public WebScraper(@Qualifier("postgres")ArticleDao articleDao) {
+        this.articleDao = articleDao;
     }
 
-    public List<Article> Scrape() {
+    private List<Article> scrape() {
+
         WebClient client = new WebClient();
         client.getOptions().setJavaScriptEnabled(false);
         client.getOptions().setCssEnabled(false);
@@ -74,16 +80,6 @@ public class WebScraper {
                             counter++;
                         }
                     }
-
-//                  For testing purposes
-                    for (Article article : articles) {
-                        System.out.println("Title: " + article.getTitle());
-                        System.out.println("Author: " + article.getAuthor());
-                        System.out.println("Post Date: " + article.getPostDate());
-                        System.out.println("Link: " + article.getUrl());
-                        System.out.println("Content: " + article.getContent());
-                        System.out.println("-------------------------------------");
-                    }
                 }
             }
             catch (IOException e) {
@@ -91,5 +87,22 @@ public class WebScraper {
             }
         }
         return articles;
+    }
+
+    public void update() {
+        List<Article> articles = scrape();
+
+        for (Article article : articles) {
+            System.out.println("Title: " + article.getTitle());
+            System.out.println("Author: " + article.getAuthor());
+            System.out.println("Post Date: " + article.getPostDate());
+            System.out.println("Link: " + article.getUrl());
+            System.out.println("Content: " + article.getContent());
+            System.out.println("-------------------------------------");
+        }
+
+        for (Article article : articles) {
+            articleDao.insertArticle(article);
+        }
     }
 }

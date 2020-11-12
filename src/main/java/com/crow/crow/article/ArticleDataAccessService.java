@@ -18,6 +18,11 @@ public class ArticleDataAccessService implements ArticleDao {
 
     @Override
     public int insertArticle(UUID id, Article article) {
+        final String sql = "INSERT INTO article(id, title, author, postDate, content, url) VALUES (uuid_generate_v4(), ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(
+                sql,
+                article.getTitle(), article.getAuthor(), article.getPostDate(), article.getContent(), article.getUrl()
+        );
         return 0;
     }
 
