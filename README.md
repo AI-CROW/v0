@@ -6,12 +6,23 @@ An application that predicts the future price of cryptocurrencies by scraping an
 
 ![CROW AI Homepage](homepage.png)
 
-## Docs & API
+## Documentation & API
 
-https://crow-ai.readthedocs.io/en/latest/
+See [the docs](https://crow-ai.readthedocs.io/en/latest/) for detailed documentation.
+
+See [FAQ](https://crow-ai.readthedocs.io/en/latest/faq.html) for FAQs.
+
+Other resources:
+
+- [Adding support for a site](https://crow-ai.readthedocs.io/en/latest/)
+- [Accessing the API](https://crow-ai.readthedocs.io/en/latest/)
 
 ## Sites
 
 | name | articles | accuracy | date added |
 |------|----------|----------|------------|
 | [Coindesk](https://coindesk.com) | 0 | 1 | 10/29/20
+
+## Live Site
+
+Coming soon
