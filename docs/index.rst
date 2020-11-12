@@ -1,16 +1,9 @@
-.. CROW AI documentation master file, created by
-   sphinx-quickstart on Thu Nov 12 11:55:28 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _index:
 
 Welcome to CROW AI's documentation!
 ===================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
+CROW AI is an intuitive, AI based cryptocurrency price estimator.
 
 Indices and tables
 ==================
@@ -18,3 +11,13 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Contents:
+
+  intro
+  faq
+  sites
+  dev
+  apiref
