@@ -9,6 +9,7 @@ public class Article {
     private final UUID id;
     private final String title;
     private final String author;
+    private final String publisher;
     private final String postDate;
     private String content;
     private final String url;
@@ -16,12 +17,14 @@ public class Article {
     public Article(@JsonProperty("id") UUID id,
                    @JsonProperty("title") String title,
                    @JsonProperty("author") String author,
+                   @JsonProperty("publisher") String publisher,
                    @JsonProperty("postDate") String postDate,
                    @JsonProperty("content") String content,
                    @JsonProperty("url") String url) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
         this.postDate = postDate;
         this.content = content;
         this.url = url;
@@ -36,6 +39,10 @@ public class Article {
     }
 
     public String getAuthor() { return author; }
+
+    public String getPublisher() {
+        return publisher;
+    }
 
     public String getPostDate() {
         return postDate;
