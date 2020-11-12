@@ -24,7 +24,7 @@ public class WebScraper {
         this.articleService = articleService;
     }
 
-    public static void main(String[] args) {
+    public List<Article> Scrape() {
         WebClient client = new WebClient();
         client.getOptions().setJavaScriptEnabled(false);
         client.getOptions().setCssEnabled(false);
@@ -90,5 +90,6 @@ public class WebScraper {
                 e.printStackTrace();
             }
         }
+        return articles;
     }
 }
