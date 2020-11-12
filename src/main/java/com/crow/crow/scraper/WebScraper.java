@@ -1,6 +1,7 @@
 package com.crow.crow.scraper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.crow.crow.article.Article;
+import com.crow.crow.article.ArticleService;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
@@ -10,11 +11,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class WebScraper {
 
     private static final List<String> baseUrls = Arrays.asList("https://www.coindesk.com/category/markets");
     private static ArrayList<Article> articles;
+
+    private final ArticleService articleService;
+
+    public WebScraper(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     public static void main(String[] args) {
         WebClient client = new WebClient();
@@ -36,11 +44,11 @@ public class WebScraper {
                         HtmlElement articleAuthor = htmlArticle.getFirstByXPath(".//span[@class='credit']");
                         HtmlElement articleDate = htmlArticle.getFirstByXPath(".//time[@class='time']");
 
-                        Article article = new Article();
-                        article.setTitle(articleAnchor.asText());
-                        article.setAuthor(articleAuthor.asText());
-                        article.setPostDate(articleDate.asText());
-                        article.setUrl("https://coindesk.com" + articleAnchor.getHrefAttribute());
+                        String title = articleAnchor.asText();
+                        String author = articleAuthor.asText();
+                        String postDate = articleDate.asText();
+                        String url = "https://coindesk.com" + articleAnchor.getHrefAttribute();
+                        Article article = new Article(UUID.randomUUID(), title, author, postDate, "", url);
 
                         articles.add(article);
                     }

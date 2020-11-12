@@ -2,7 +2,7 @@ CREATE TABLE article (
     id UUID NOT NULL PRIMARY KEY,
     title VARCHAR(128) NOT NULL,
     author VARCHAR(128) NOT NULL,
-    post_date VARCHAR(128) NOT NULL,
+    postDate VARCHAR(128) NOT NULL,
     content VARCHAR NOT NULL,
     url VARCHAR NOT NULL
 );
