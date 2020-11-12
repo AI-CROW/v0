@@ -18,21 +18,27 @@ public class ArticleController {
         this.webScraper = webScraper;
     }
 
-    @RequestMapping("api/v1/article")
+    @RequestMapping("api/article")
     @PostMapping
     public void addArticle(@RequestBody Article article) {
         articleService.addArticle(article);
     }
 
-    @RequestMapping("api/v1/articles")
+    @RequestMapping("api/articles")
     @GetMapping
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
     }
 
-    @RequestMapping("api/v1/articles/update")
+    @RequestMapping("api/articles/update")
     @GetMapping
     public void updateArticles() {
         webScraper.update();
+    }
+
+    @RequestMapping("api/articles/{x}/{y}")
+    @GetMapping
+    public List<Article> getArticlesByX(@PathVariable("x") String x, @PathVariable("y") String y) {
+        return articleService.getArticlesByX(x, y);
     }
 }

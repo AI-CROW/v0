@@ -52,9 +52,10 @@ public class WebScraper {
 
                         String title = articleAnchor.asText();
                         String author = articleAuthor.asText();
+                        String publisher = "Coindesk";
                         String postDate = articleDate.asText();
                         String url = "https://coindesk.com" + articleAnchor.getHrefAttribute();
-                        Article article = new Article(UUID.randomUUID(), title, author, postDate, "", url);
+                        Article article = new Article(UUID.randomUUID(), title, author, publisher, postDate, "", url);
 
                         articles.add(article);
                     }
@@ -90,16 +91,8 @@ public class WebScraper {
     }
 
     public void update() {
-        List<Article> articles = scrape();
 
-        for (Article article : articles) {
-            System.out.println("Title: " + article.getTitle());
-            System.out.println("Author: " + article.getAuthor());
-            System.out.println("Post Date: " + article.getPostDate());
-            System.out.println("Link: " + article.getUrl());
-            System.out.println("Content: " + article.getContent());
-            System.out.println("-------------------------------------");
-        }
+        List<Article> articles = scrape();
 
         for (Article article : articles) {
             articleDao.insertArticle(article);
