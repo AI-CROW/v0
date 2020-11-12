@@ -1,6 +1,6 @@
-package com.crow.crow.dao;
+package com.crow.crow.article;
 
-import com.crow.crow.model.Article;
+import com.crow.crow.article.Article;
 
 import java.util.List;
 import java.util.UUID;

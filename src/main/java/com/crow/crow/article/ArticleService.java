@@ -1,7 +1,5 @@
-package com.crow.crow.service;
+package com.crow.crow.article;
 
-import com.crow.crow.dao.ArticleDao;
-import com.crow.crow.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

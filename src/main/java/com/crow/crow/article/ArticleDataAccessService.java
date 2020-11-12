@@ -1,12 +1,10 @@
-package com.crow.crow.dao;
+package com.crow.crow.article;
 
-import com.crow.crow.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository("postgres")
@@ -25,11 +23,15 @@ public class ArticleDataAccessService implements ArticleDao {
 
     @Override
     public List<Article> selectAllArticles() {
-        final String sql = "SELECT id, title FROM article";
+        final String sql = "SELECT id, title, author, post_date, content, url FROM article";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String title = resultSet.getString("title");
-            return new Article(id, title);
+            String author = resultSet.getString("author");
+            String post_date = resultSet.getString("post_date");
+            String content = resultSet.getString("content");
+            String url = resultSet.getString("url");
+            return new Article(id, title, author, post_date, content, url);
         });
     }
 }

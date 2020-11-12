@@ -1,7 +1,7 @@
-package com.crow.crow.api;
+package com.crow.crow.article;
 
-import com.crow.crow.model.Article;
-import com.crow.crow.service.ArticleService;
+import com.crow.crow.article.Article;
+import com.crow.crow.article.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
