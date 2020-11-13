@@ -18,27 +18,21 @@ public class ArticleController {
         this.coindesk = coindesk;
     }
 
-    @RequestMapping("api/article")
-    @PostMapping
-    public void addArticle(@RequestBody Article article) {
-        articleService.addArticle(article);
-    }
-
     @RequestMapping("api/articles")
     @GetMapping
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
     }
 
-    @RequestMapping("api/articles/update")
-    @GetMapping
-    public void updateArticles() {
-        coindesk.update();
-    }
-
     @RequestMapping("api/articles/{x}/{y}")
     @GetMapping
     public List<Article> getArticlesByX(@PathVariable("x") String x, @PathVariable("y") String y) {
         return articleService.getArticlesByX(x, y);
+    }
+
+    @RequestMapping("api/articles/update")
+    @GetMapping
+    public void updateArticles() {
+        coindesk.update();
     }
 }

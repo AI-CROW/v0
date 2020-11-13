@@ -1,13 +1,12 @@
 package com.crow.crow.scraper.sites.core;
 
 import com.crow.crow.article.Article;
-import com.crow.crow.article.ArticleDao;
+import com.crow.crow.article.ArticleDataAccessService;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,11 +21,11 @@ public class Coindesk {
     private static final List<String> baseUrls = Arrays.asList("https://www.coindesk.com/category/markets");
     private static ArrayList<Article> articles;
 
-    private final ArticleDao articleDao;
+    private final ArticleDataAccessService articleDataAccessService;
 
     @Autowired
-    public Coindesk(@Qualifier("postgres")ArticleDao articleDao) {
-        this.articleDao = articleDao;
+    public Coindesk(ArticleDataAccessService articleDataAccessService) {
+        this.articleDataAccessService = articleDataAccessService;
     }
 
     private List<Article> scrape() {
@@ -93,7 +92,7 @@ public class Coindesk {
         List<Article> articles = scrape();
 
         for (Article article : articles) {
-            articleDao.insertArticle(article);
+            articleDataAccessService.insertArticle(article);
         }
     }
 }
