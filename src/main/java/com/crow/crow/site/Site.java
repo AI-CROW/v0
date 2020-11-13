@@ -11,6 +11,10 @@ public class Site {
     private final String url;
     private final String accuracy;
 
+    public String getAccuracy() {
+        return accuracy;
+    }
+
     public Site(@JsonProperty("id") UUID id,
                 @JsonProperty("name") String name,
                 @JsonProperty("url") String url,
@@ -19,5 +23,17 @@ public class Site {
         this.name = name;
         this.url = url;
         this.accuracy = accuracy;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

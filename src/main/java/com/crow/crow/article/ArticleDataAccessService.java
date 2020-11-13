@@ -5,11 +5,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-@Repository("postgres")
-public class ArticleDataAccessService implements ArticleDao {
+@Repository
+public class ArticleDataAccessService {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -17,8 +16,7 @@ public class ArticleDataAccessService implements ArticleDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public int insertArticle(UUID id, Article article) {
+    public int insertArticle(Article article) {
         final String sql = "INSERT INTO article(id, title, postDate, content, url, site_id, author_id) VALUES (uuid_generate_v4(), ?, ?, ?, ?, ?, ?);";
         jdbcTemplate.update(
                 sql,
@@ -27,9 +25,8 @@ public class ArticleDataAccessService implements ArticleDao {
         return 0;
     }
 
-    @Override
-    public List<Article> getArticlesByX(String x, String y) {
-        final String sql = "SELECT id, title, postDate, content, url, site_id, author_id FROM article WHERE " + x + " = '" + y + "'";
+    public List<Article> selectAllArticles() {
+        final String sql = "SELECT id, title, postDate, content, url, site_id, author_id FROM article";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String title = resultSet.getString("title");
@@ -42,9 +39,8 @@ public class ArticleDataAccessService implements ArticleDao {
         });
     }
 
-    @Override
-    public List<Article> selectAllArticles() {
-        final String sql = "SELECT id, title, postDate, content, url, site_id, author_id FROM article";
+    public List<Article> getArticlesByX(String x, String y) {
+        final String sql = "SELECT id, title, postDate, content, url, site_id, author_id FROM article WHERE " + x + " = '" + y + "'";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String title = resultSet.getString("title");

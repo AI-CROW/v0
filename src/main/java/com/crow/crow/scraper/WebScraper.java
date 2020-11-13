@@ -1,16 +1,16 @@
 package com.crow.crow.scraper;
 
-import com.crow.crow.article.ArticleDao;
+import com.crow.crow.article.ArticleDataAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 public class WebScraper {
 
-    private final ArticleDao articleDao;
+    private final ArticleDataAccessService articleDataAccessService;
 
     @Autowired
-    public WebScraper(@Qualifier("postgres")ArticleDao articleDao) {
-        this.articleDao = articleDao;
+    public WebScraper(@Qualifier("postgres")ArticleDataAccessService articleDataAccessService) {
+        this.articleDataAccessService = articleDataAccessService;
     }
 
 //    public List<Site> scrapeAll() {

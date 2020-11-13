@@ -1,31 +1,25 @@
 package com.crow.crow.article;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArticleService {
 
-    private final ArticleDao articleDao;
+    private final ArticleDataAccessService articleDataAccessService;
 
     @Autowired
-    public ArticleService(@Qualifier("postgres") ArticleDao articleDao) {
-        this.articleDao = articleDao;
-    }
-
-    public int addArticle(Article article) {
-        return articleDao.insertArticle(article);
+    public ArticleService(ArticleDataAccessService articleDataAccessService) {
+        this.articleDataAccessService = articleDataAccessService;
     }
 
     public List<Article> getAllArticles() {
-        return articleDao.selectAllArticles();
+        return articleDataAccessService.selectAllArticles();
     }
 
     public List<Article> getArticlesByX(String x, String y) {
-        return articleDao.getArticlesByX(x, y);
+        return articleDataAccessService.getArticlesByX(x, y);
     }
 }
