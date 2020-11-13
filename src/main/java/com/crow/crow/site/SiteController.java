@@ -1,5 +1,6 @@
 package com.crow.crow.site;
 
+import com.crow.crow.scraper.WebScraper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +13,12 @@ import java.util.List;
 public class SiteController {
 
     private final SiteService siteService;
+    private final WebScraper webScraper;
 
     @Autowired
-    public SiteController(SiteService siteService) {
+    public SiteController(SiteService siteService, WebScraper webScraper) {
         this.siteService = siteService;
+        this.webScraper = webScraper;
     }
 
     @RequestMapping("api/sites")
@@ -26,5 +29,11 @@ public class SiteController {
     @GetMapping
     public List<Site> getSitesByX(@PathVariable("x") String x, @PathVariable("y") String y) {
         return siteService.getSitesByX(x, y);
+    }
+
+    @RequestMapping("api/sites/test")
+    @GetMapping
+    public List<Site> siteTesting() {
+        return webScraper.scrapeAll();
     }
 }
