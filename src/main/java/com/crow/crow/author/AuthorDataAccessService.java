@@ -15,12 +15,30 @@ public class AuthorDataAccessService {
     @Autowired
     public AuthorDataAccessService(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
 
+    public int addAuthor(Author author) {
+        final String sql = "INSERT INTO author(id, name, accuracy) VALUES (uuid_generate_v4(), ?, ?);";
+        jdbcTemplate.update(
+                sql,
+                author.getName(), author.getAccuracy()
+        );
+        return 0;
+    }
+
+    public int insertAuthor(UUID id, Author author) {
+        final String sql = "INSERT INTO author(id, name, accuracy) VALUES (?, ?, ?)";
+        jdbcTemplate.update(
+                sql,
+                id, author.getName(), author.getAccuracy()
+        );
+        return 0;
+    }
+
     public List<Author> selectAllAuthors() {
         final String sql = "SELECT id, name, accuracy FROM author";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
-            String accuracy = resultSet.getString("accuracy");
+            Double accuracy = resultSet.getDouble("accuracy");
             return new Author(id, name, accuracy);
         });
     }
@@ -30,7 +48,7 @@ public class AuthorDataAccessService {
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
-            String accuracy = resultSet.getString("accuracy");
+            Double accuracy = resultSet.getDouble("accuracy");
             return new Author(id, name, accuracy);
         });
     }

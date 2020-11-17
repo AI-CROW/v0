@@ -9,11 +9,11 @@ public class Author {
 
     private final UUID id;
     private final String name;
-    private final String accuracy;
+    private final Double accuracy;
 
     public Author(@JsonProperty("id") UUID id,
                 @JsonProperty("name") String name,
-                @JsonProperty("accuracy") String accuracy) {
+                @JsonProperty("accuracy") Double accuracy) {
         this.id = id;
         this.name = name;
         this.accuracy = accuracy;
@@ -27,7 +27,7 @@ public class Author {
         return name;
     }
 
-    public String getAccuracy() {
+    public Double getAccuracy() {
         return accuracy;
     }
 }

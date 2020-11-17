@@ -1,6 +1,5 @@
 package com.crow.crow.article;
 
-import com.crow.crow.scraper.sites.core.Coindesk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +9,10 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleService articleService;
-    private final Coindesk coindesk;
 
     @Autowired
-    public ArticleController(ArticleService articleService, Coindesk coindesk) {
+    public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
-        this.coindesk = coindesk;
     }
 
     @RequestMapping("api/articles")
@@ -28,11 +25,5 @@ public class ArticleController {
     @GetMapping
     public List<Article> getArticlesByX(@PathVariable("x") String x, @PathVariable("y") String y) {
         return articleService.getArticlesByX(x, y);
-    }
-
-    @RequestMapping("api/articles/update")
-    @GetMapping
-    public void updateArticles() {
-        coindesk.update();
     }
 }
