@@ -77,8 +77,8 @@ public class WebScraper {
                     articleDataAccessService.insertArticle(article);
                 }
             }
+            System.out.println(articles.size() + " added from " + site.getName() + ".");
         }
-        System.out.println("test");
 
         return sites;
     }
